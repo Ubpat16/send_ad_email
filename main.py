@@ -21,7 +21,7 @@ for index in range(len(entrance_list)):
     msg['From'] = 'topfaithlegacycollege@topfaith.sch.ng'
     msg['To'] = email_address
     msg['Subject'] = '2022/2023 PROVISIONAL ADMISSION FOR ' + name
-    body = f'Dear Parent,\n\nCongratulations on your choice of Topfaith Legacy College Ibiakpan for your {child}. Forwarded herewith is your ward Admission/Result notification letter for the entrance examination held on Saturday, April 2, 2022.\n\n Thank you.\n\n TOPFAITH SCHOOLS'
+    body = f'Dear Parent,\n\nCongratulations on your choice of Topfaith Legacy College Ibiakpan for {child}. Forwarded herewith is your ward Admission/Result notification letter for the entrance examination held on Saturday, April 2, 2022.\n\n Thank you.\n\n TOPFAITH SCHOOLS'
 
     # Attaching body with msg
     msg.attach(MIMEText(body, 'plain'))
