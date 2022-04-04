@@ -10,6 +10,7 @@ import pandas
 # Using Pandas to open the list and obtain data rows
 entrance_list = pandas.read_csv('admission_list.csv')
 for index in range(len(entrance_list)):
+    password = ''
     name = entrance_list['Name'][index]
     email_address = entrance_list['email_address'][index]
     child = entrance_list['first_name'][index]
@@ -20,7 +21,7 @@ for index in range(len(entrance_list)):
     msg['From'] = 'topfaithlegacycollege@topfaith.sch.ng'
     msg['To'] = email_address
     msg['Subject'] = '2022/2023 PROVISIONAL ADMISSION FOR ' + name
-    body = 'Dear Parent,\n\nCongratulations on your choice of Topfaith Legacy College Ibiakpan for your ward. Forwarded herewith is your ward Admission/Result notification letter for the entrance examination held on Saturday, April 2, 2022.\n\n Thank you.\n\n TOPFAITH SCHOOLS'
+    body = f'Dear Parent,\n\nCongratulations on your choice of Topfaith Legacy College Ibiakpan for your {child}. Forwarded herewith is your ward Admission/Result notification letter for the entrance examination held on Saturday, April 2, 2022.\n\n Thank you.\n\n TOPFAITH SCHOOLS'
 
     # Attaching body with msg
     msg.attach(MIMEText(body, 'plain'))
@@ -42,9 +43,9 @@ for index in range(len(entrance_list)):
     msg.attach(mime_base)
 
     context = ssl.create_default_context()
-    with smtplib.SMTP_SSL('smtp.gmail.com', port=465) as conn:
+    with smtplib.SMTP_SSL('smtp.gmail.com', port=465, context=context) as conn:
         print(f'Mail sending to {name}')
-        conn.login(user=msg['From'], password='Myworld1992')
+        conn.login(user=msg['From'], password=password)
         text = msg.as_string()
         conn.sendmail(from_addr=msg['From'], to_addrs=email_address, msg=text)
         print(f'Mail sent to {name}')
